@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Transcribe
+//  LiveWired
 //
-//  Created by Vincent Kwong on 2017-10-15.
-//  Copyright © 2017 Vincent Kwong. All rights reserved.
+//  Created by Mostafa Hakam on 2017-10-16.
+//  Copyright © 2017 Apple Inc. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
