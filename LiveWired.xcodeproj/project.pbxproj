@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E1C636A1F99B19600B1A36B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E1C63691F99B19600B1A36B /* GoogleService-Info.plist */; };
 		790FCE401F94BB85009409EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE3F1F94BB85009409EE /* AppDelegate.swift */; };
 		790FCE421F94BB85009409EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE411F94BB85009409EE /* ViewController.swift */; };
 		790FCE451F94BB85009409EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790FCE431F94BB85009409EE /* Main.storyboard */; };
@@ -16,9 +17,14 @@
 		790FCE541F94BC6F009409EE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE531F94BC6F009409EE /* DetailViewController.swift */; };
 		790FCE561F94BCD1009409EE /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE551F94BCD1009409EE /* MainNavigationController.swift */; };
 		790FCE5A1F94C9E3009409EE /* recordingsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE591F94C9E3009409EE /* recordingsTableTableViewController.swift */; };
+		CF3EF5738BC5AD0034577A0D /* Pods_LiveWired.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6313BD91F110CDC1B71FCB03 /* Pods_LiveWired.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19D25EA14B36269B40F481BB /* Pods-LiveWired.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveWired.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveWired/Pods-LiveWired.debug.xcconfig"; sourceTree = "<group>"; };
+		1E1C63691F99B19600B1A36B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4D74892D52E93231336463C5 /* Pods-LiveWired.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveWired.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveWired/Pods-LiveWired.release.xcconfig"; sourceTree = "<group>"; };
+		6313BD91F110CDC1B71FCB03 /* Pods_LiveWired.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveWired.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		790FCE3C1F94BB85009409EE /* LiveWired.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveWired.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		790FCE3F1F94BB85009409EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		790FCE411F94BB85009409EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,17 +43,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3EF5738BC5AD0034577A0D /* Pods_LiveWired.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19BA2D0E64CDA07397B49BB6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19D25EA14B36269B40F481BB /* Pods-LiveWired.debug.xcconfig */,
+				4D74892D52E93231336463C5 /* Pods-LiveWired.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1E1C63661F986F4500B1A36B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				790FCE411F94BB85009409EE /* ViewController.swift */,
+				790FCE511F94BBBA009409EE /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1EE602D78FB29503E9343679 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6313BD91F110CDC1B71FCB03 /* Pods_LiveWired.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		790FCE331F94BB85009409EE = {
 			isa = PBXGroup;
 			children = (
 				790FCE3E1F94BB85009409EE /* LiveWired */,
 				790FCE3D1F94BB85009409EE /* Products */,
+				19BA2D0E64CDA07397B49BB6 /* Pods */,
+				1EE602D78FB29503E9343679 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,15 +98,15 @@
 			isa = PBXGroup;
 			children = (
 				790FCE3F1F94BB85009409EE /* AppDelegate.swift */,
-				790FCE411F94BB85009409EE /* ViewController.swift */,
+				1E1C63661F986F4500B1A36B /* Controller */,
 				790FCE431F94BB85009409EE /* Main.storyboard */,
 				790FCE461F94BB85009409EE /* Assets.xcassets */,
 				790FCE481F94BB85009409EE /* LaunchScreen.storyboard */,
 				790FCE4B1F94BB85009409EE /* Info.plist */,
-				790FCE511F94BBBA009409EE /* LoginViewController.swift */,
 				790FCE531F94BC6F009409EE /* DetailViewController.swift */,
 				790FCE551F94BCD1009409EE /* MainNavigationController.swift */,
 				790FCE591F94C9E3009409EE /* recordingsTableTableViewController.swift */,
+				1E1C63691F99B19600B1A36B /* GoogleService-Info.plist */,
 			);
 			path = LiveWired;
 			sourceTree = "<group>";
@@ -83,9 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 790FCE4E1F94BB85009409EE /* Build configuration list for PBXNativeTarget "LiveWired" */;
 			buildPhases = (
+				7242E0612B1451795783F341 /* [CP] Check Pods Manifest.lock */,
 				790FCE381F94BB85009409EE /* Sources */,
 				790FCE391F94BB85009409EE /* Frameworks */,
 				790FCE3A1F94BB85009409EE /* Resources */,
+				F2DA6457CCC71F753AC2B9BC /* [CP] Embed Pods Frameworks */,
+				1BFC47921F52926EE7EAAA12 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,12 +174,73 @@
 			buildActionMask = 2147483647;
 			files = (
 				790FCE4A1F94BB85009409EE /* LaunchScreen.storyboard in Resources */,
+				1E1C636A1F99B19600B1A36B /* GoogleService-Info.plist in Resources */,
 				790FCE471F94BB85009409EE /* Assets.xcassets in Resources */,
 				790FCE451F94BB85009409EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BFC47921F52926EE7EAAA12 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveWired/Pods-LiveWired-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7242E0612B1451795783F341 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiveWired-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2DA6457CCC71F753AC2B9BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LiveWired/Pods-LiveWired-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveWired/Pods-LiveWired-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		790FCE381F94BB85009409EE /* Sources */ = {
@@ -288,13 +387,14 @@
 		};
 		790FCE4F1F94BB85009409EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19D25EA14B36269B40F481BB /* Pods-LiveWired.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5S64A52978;
+				DEVELOPMENT_TEAM = DP52652VVY;
 				INFOPLIST_FILE = LiveWired/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LiveWired;
+				PRODUCT_BUNDLE_IDENTIFIER = .daniel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,13 +403,14 @@
 		};
 		790FCE501F94BB85009409EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D74892D52E93231336463C5 /* Pods-LiveWired.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5S64A52978;
+				DEVELOPMENT_TEAM = DP52652VVY;
 				INFOPLIST_FILE = LiveWired/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LiveWired;
+				PRODUCT_BUNDLE_IDENTIFIER = .daniel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
