@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    @objc func handleLogin(){
+    @objc func handleLogin() {
         guard let email = emailTextField.text, let password = PassTextField.text else {
             print("Form is not valid")
             return
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @objc func handleLoginRegister(){
+    @objc func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()
         }
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @objc func handleRegister(){
+    @objc func handleRegister() {
         
         guard let email = emailTextField.text, let password = PassTextField.text, let name = nameTextField.text else {
             print("Form is not valid")
@@ -247,7 +247,7 @@ class LoginViewController: UIViewController {
         loginRegisterSegmentedControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
-    func setupImage(){
+    func setupImage() {
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -263,7 +263,7 @@ class LoginViewController: UIViewController {
 //        profileImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
 //    }
     
-    func setupLogRegButton(){
+    func setupLogRegButton() {
         
         //Constraints :  need x,y, width and height
         logRegButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
