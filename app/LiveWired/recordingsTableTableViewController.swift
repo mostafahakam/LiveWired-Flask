@@ -17,7 +17,7 @@ class recordingsTableTableViewController: UITableViewController {
         super.viewDidLoad()
         
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            if(key.contains("sampleRecording")){
+            if key.contains("sampleRecording") {
                 samples.append(key)
                 print("\(key) = \(value) \n")
             }

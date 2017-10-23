@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    @objc func handleLogin(){
+    @objc func handleLogin() {
         guard let email = emailTextField.text, let password = PassTextField.text else {
             print("Form is not valid")
             return
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @objc func handleRegister(){
+    @objc func handleRegister() {
         
         guard let email = emailTextField.text, let password = PassTextField.text, let name = nameTextField.text else {
             print("Form is not valid")
@@ -247,7 +247,7 @@ class LoginViewController: UIViewController {
         loginRegisterSegmentedControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
-    func setupImage(){
+    func setupImage() {
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -353,11 +353,12 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
 }
-
 
 extension UIColor {
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
+    
 }

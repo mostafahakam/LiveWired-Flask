@@ -13,10 +13,9 @@ import Speech
 
 class ViewController: UIViewController, SFSpeechRecognizerDelegate{
     
-    var recording = false;
-    var recordingNum = 0;
-    var currentRecording = "";
-    
+    var recording = false
+    var recordingNum = 0
+    var currentRecording = ""
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
@@ -141,13 +140,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
     }
 
     @objc func startButtonTapped(_ sender: UIButton) {
-        if(!recording){
+        if !recording {
             print("Starting recording")
             self.recordAndRecognizeSpeech()
-        }else{
+        } else {
             print("Stopping recording")
             audioEngine.stop()
-            recording = false;
+            recording = false
             UserDefaults.standard.set(self.currentRecording, forKey:"sampleRecording \(recordingNum)")
             recordingNum += 1
             self.currentRecording = ""
@@ -156,7 +155,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
 
 
     func recordAndRecognizeSpeech() {
-        recording = true;
+        recording = true
 
 
         audioEngine.prepare()
@@ -183,4 +182,3 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         })
     }
 }
-
