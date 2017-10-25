@@ -17,6 +17,7 @@
 		790FCE541F94BC6F009409EE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE531F94BC6F009409EE /* DetailViewController.swift */; };
 		790FCE561F94BCD1009409EE /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE551F94BCD1009409EE /* MainNavigationController.swift */; };
 		790FCE5A1F94C9E3009409EE /* recordingsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790FCE591F94C9E3009409EE /* recordingsTableTableViewController.swift */; };
+		C96D8C041F9D566700098134 /* TranscriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96D8C031F9D566700098134 /* TranscriptViewController.swift */; };
 		CF3EF5738BC5AD0034577A0D /* Pods_LiveWired.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6313BD91F110CDC1B71FCB03 /* Pods_LiveWired.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		790FCE531F94BC6F009409EE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		790FCE551F94BCD1009409EE /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		790FCE591F94C9E3009409EE /* recordingsTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordingsTableTableViewController.swift; sourceTree = "<group>"; };
+		C96D8C031F9D566700098134 /* TranscriptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranscriptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,8 @@
 		1E1C63661F986F4500B1A36B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C96D8C031F9D566700098134 /* TranscriptViewController.swift */,
+				790FCE551F94BCD1009409EE /* MainNavigationController.swift */,
 				790FCE411F94BB85009409EE /* ViewController.swift */,
 				790FCE511F94BBBA009409EE /* LoginViewController.swift */,
 			);
@@ -104,7 +108,6 @@
 				790FCE481F94BB85009409EE /* LaunchScreen.storyboard */,
 				790FCE4B1F94BB85009409EE /* Info.plist */,
 				790FCE531F94BC6F009409EE /* DetailViewController.swift */,
-				790FCE551F94BCD1009409EE /* MainNavigationController.swift */,
 				790FCE591F94C9E3009409EE /* recordingsTableTableViewController.swift */,
 				1E1C63691F99B19600B1A36B /* GoogleService-Info.plist */,
 			);
@@ -253,6 +256,7 @@
 				790FCE421F94BB85009409EE /* ViewController.swift in Sources */,
 				790FCE401F94BB85009409EE /* AppDelegate.swift in Sources */,
 				790FCE541F94BC6F009409EE /* DetailViewController.swift in Sources */,
+				C96D8C041F9D566700098134 /* TranscriptViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,12 +394,14 @@
 			baseConfigurationReference = 19D25EA14B36269B40F481BB /* Pods-LiveWired.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DP52652VVY;
+				DEVELOPMENT_TEAM = 78UKXR8K7S;
 				INFOPLIST_FILE = LiveWired/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .daniel;
+				PRODUCT_BUNDLE_IDENTIFIER = ".return-toSleep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -406,12 +412,14 @@
 			baseConfigurationReference = 4D74892D52E93231336463C5 /* Pods-LiveWired.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DP52652VVY;
+				DEVELOPMENT_TEAM = 78UKXR8K7S;
 				INFOPLIST_FILE = LiveWired/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = .daniel;
+				PRODUCT_BUNDLE_IDENTIFIER = ".return-toSleep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
