@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @objc func handleLoginRegister(){
+    @objc func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()
         }
@@ -263,7 +263,7 @@ class LoginViewController: UIViewController {
 //        profileImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
 //    }
     
-    func setupLogRegButton(){
+    func setupLogRegButton() {
         
         //Constraints :  need x,y, width and height
         logRegButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

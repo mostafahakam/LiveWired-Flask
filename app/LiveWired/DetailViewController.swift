@@ -82,4 +82,3 @@ class DetailViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
 }
-
