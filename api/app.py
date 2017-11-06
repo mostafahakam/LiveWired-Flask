@@ -19,6 +19,14 @@ tasks = [
     }
 ]
 
+@app.before_request
+def before_request():
+    db.db.connect()
+
+@app.after_request
+def after_request(response):
+    db.db.close()
+    return response
 
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
@@ -89,4 +97,5 @@ def delete_task(task_id):
 
 
 if __name__ == '__main__':
+
     app.run(host='0.0.0.0')
