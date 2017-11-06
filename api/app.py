@@ -1,4 +1,5 @@
 #!flask/bin/python
+import json
 from flask import Flask, jsonify, make_response, abort, request
 from db import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
@@ -42,7 +43,7 @@ def add_transcript(user_id):
 
 @app.route('/api/v1/transcript/<string:user_id>', methods=['GET'])
 def get_transcript(user_id):
-    return make_response(jsonify(model_to_dict(getTranscript(user_id))))
+    return make_response(jsonify(json.dumps(model_to_dict(getTranscript(user_id)))))
 
 @app.errorhandler(404)
 def not_found(error):
