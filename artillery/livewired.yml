@@ -1,0 +1,11 @@
+config:
+    target: 'http://35.199.154.5:5000/api/v1/transcript'
+    
+    phases:
+      - duration: 60
+        arrivalRate: 5
+    
+scenarios:
+    - flow:
+      - get:
+          url: "/test1"
