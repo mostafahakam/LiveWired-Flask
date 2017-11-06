@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify, make_response, abort, request
+import db
 
 app = Flask(__name__)
 
@@ -19,6 +20,11 @@ tasks = [
 ]
 
 
+
+@app.route('/api/v1/transcript/<string: user_id>', methods=['PUT'])
+def add_transcript(user_id):
+    request_json = request.get_json();
+    print request_json
 
 @app.errorhandler(404)
 def not_found(error):
