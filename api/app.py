@@ -21,8 +21,8 @@ tasks = [
 
 @app.before_first_request
 def createTables():
-    db.connect()
-    db.create_tables([Transcript])
+    db.db.connect()
+    db.db.create_tables([Transcript])
 
 @app.before_request
 def before_request():
