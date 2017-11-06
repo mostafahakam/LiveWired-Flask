@@ -24,7 +24,7 @@ tasks = [
 @app.route('/api/v1/transcript/<string: user_id>', methods=['PUT'])
 def add_transcript(user_id):
     request_json = request.get_json();
-    print request_json
+    print (request_json)
 
 @app.errorhandler(404)
 def not_found(error):
