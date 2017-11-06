@@ -13,7 +13,7 @@ class BaseModel(Model):
 class Transcript(BaseModel):
     user_id = TextField()
     script = TextField()
-    created_date = DateTimeField(default=datetime.datetime.now)
+    #created_date = DateTimeField(default=datetime.datetime.now)
 
 
 def addTranscript(user_id, transcript):
