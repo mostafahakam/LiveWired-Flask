@@ -38,6 +38,10 @@ def add_transcript(user_id):
     return make_response(jsonify({'Success': 'Script added'}), 201)
 
 
+@app.route('/api/v1/transcript/<string:user_id>', methods=['GET'])
+def get_transcript(user_id):
+    return make_response(jsonify(getTranscript(user_id)))
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)

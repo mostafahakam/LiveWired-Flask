@@ -9,6 +9,7 @@ class BaseModel(Model):
     class Meta:
         database = db
 
+
 class Transcript(BaseModel):
     user_id = TextField()
     script = TextField()
@@ -21,4 +22,4 @@ def addTranscript(user_id, transcript):
 
 
 def getTranscript(user_id):
-    user = Transcript.get(Transcript.user_id == user_id)
+    return Transcript.select().where(Transcript.user_id == user_id)
