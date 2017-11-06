@@ -21,16 +21,16 @@ tasks = [
 
 @app.before_first_request
 def createTables():
-    db.db.connect()
-    db.db.create_tables([Transcript])
+    db.connect()
+    db.create_tables([Transcript])
 
 @app.before_request
 def before_request():
-    db.db.connect()
+    db.connect()
 
 @app.after_request
 def after_request(response):
-    db.db.close()
+    db.close()
     return response
 
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
