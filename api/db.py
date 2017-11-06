@@ -9,17 +9,16 @@ class BaseModel(Model):
     class Meta:
         database = db
 
-
 class Transcript(BaseModel):
-    username = TextField()
+    user_id = TextField()
     script = TextField()
     created_date = DateTimeField(default=datetime.datetime.now)
 
 
-def addTranscript(username, transcript):
-    t = Transcript.create(username=username, script=transcript)
+def addTranscript(user_id, transcript):
+    t = Transcript.create(user_id=user_id, script=transcript)
     t.save()
 
 
-def getTranscript(username):
-    user = Transcript.get(Transcript.username == username)
+def getTranscript(user_id):
+    user = Transcript.get(Transcript.user_id == user_id)

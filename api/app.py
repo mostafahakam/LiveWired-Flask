@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify, make_response, abort, request
-import db
+from db import *
 
 app = Flask(__name__)
 
@@ -18,6 +18,11 @@ tasks = [
         'done': False
     }
 ]
+
+@app.before_first_request
+def createTables():
+    db.connect()
+    db.create_tables([Transcript])
 
 @app.before_request
 def before_request():
