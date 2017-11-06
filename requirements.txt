@@ -1,1 +1,2 @@
-api/app
+peewee
+flask
