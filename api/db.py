@@ -22,4 +22,4 @@ def addTranscript(user_id, transcript):
 
 
 def getTranscript(user_id):
-    return Transcript.select().where(Transcript.user_id == user_id).get()
+    return Transcript.select().where(Transcript.user_id == user_id)
