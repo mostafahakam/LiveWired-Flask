@@ -43,7 +43,13 @@ def add_transcript(user_id):
 
 @app.route('/api/v1/transcript/<string:user_id>', methods=['GET'])
 def get_transcript(user_id):
-    return make_response(jsonify(json.dumps(model_to_dict(getTranscript(user_id)))))
+    scripts = getTranscript(user_id)
+    scripts_json = []
+
+    for script in scripts:
+        scripts_json.append(model_to_dict(script))
+
+    return make_response(jsonify(json.dumps(scripts_json)), 201)
 
 @app.errorhandler(404)
 def not_found(error):
