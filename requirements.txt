@@ -1,3 +1,4 @@
+python-logilab-common
 pytest
 peewee
 flask
