@@ -22,8 +22,10 @@ tasks = [
 
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
-    request_json = request.get_json();
-    print (request_json)
+    request_json = request.get_json()
+    db.addTranscript(user_id, request_json['script'])
+    return make_response(jsonify({'Success': 'Script added'}), 201)
+
 
 
 @app.errorhandler(404)
