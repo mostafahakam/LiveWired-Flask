@@ -34,6 +34,11 @@ def after_request(response):
     return response
 
 
+@app.route('/api/v1/db/clear', methods=['POST'])
+def clear_transcripts():
+    Transcript.delete().execute()
+
+
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
     request_json = request.get_json()
