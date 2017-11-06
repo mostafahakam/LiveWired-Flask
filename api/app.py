@@ -34,7 +34,7 @@ def after_request(response):
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
     request_json = request.get_json()
-    db.addTranscript(user_id, request_json['script'])
+    addTranscript(user_id, request_json['script'])
     return make_response(jsonify({'Success': 'Script added'}), 201)
 
 
