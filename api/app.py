@@ -8,23 +8,23 @@ tasks = [
     {
         'id': 1,
         'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol', 
+        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
         'done': False
     },
     {
         'id': 2,
         'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web', 
+        'description': u'Need to find a good Python tutorial on the web',
         'done': False
     }
 ]
 
 
-
-@app.route('/api/v1/transcript/<string: user_id>', methods=['PUT'])
+@app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
     request_json = request.get_json();
     print (request_json)
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -75,6 +75,7 @@ def update_task(task_id):
     task[0]['description'] = request.json.get('description', task[0]['description'])
     task[0]['done'] = request.json.get('done', task[0]['done'])
     return jsonify({'task': task[0]})
+
 
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
