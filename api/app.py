@@ -19,26 +19,23 @@ tasks = [
     }
 ]
 
-@app.before_first_request
-def createTables():
-    db.connect()
-    db.create_tables([Transcript])
 
 @app.before_request
 def before_request():
     db.connect()
+
 
 @app.after_request
 def after_request(response):
     db.close()
     return response
 
+
 @app.route('/api/v1/transcript/<string:user_id>', methods=['PUT'])
 def add_transcript(user_id):
     request_json = request.get_json()
     db.addTranscript(user_id, request_json['script'])
     return make_response(jsonify({'Success': 'Script added'}), 201)
-
 
 
 @app.errorhandler(404)
@@ -102,5 +99,4 @@ def delete_task(task_id):
 
 
 if __name__ == '__main__':
-
     app.run(host='0.0.0.0')
