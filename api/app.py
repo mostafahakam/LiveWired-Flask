@@ -55,7 +55,7 @@ def get_transcript(user_id):
     for script in scripts:
         scripts_json.append(model_to_dict(script))
 
-    return make_response(jsonify(json.dumps(scripts_json)), 201)
+    return make_response(jsonify(scripts_json), 201)
 
 @app.errorhandler(404)
 def not_found(error):
