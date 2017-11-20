@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = UINavigationController(rootViewController: ViewController())
         
+        //window?.rootViewController = UINavigationController(rootViewController: MainNavigationController())
         return true
     }
 

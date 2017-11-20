@@ -59,7 +59,7 @@ class TranscriptViewController: UIViewController, UITextViewDelegate{
         super.touchesBegan(touches, with: event)
         self.textView.resignFirstResponder()
     }
-    
+        
     
     
 }

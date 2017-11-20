@@ -7,26 +7,36 @@
 //
 
 import UIKit
+import Firebase
 
 class recordingsTableTableViewController: UITableViewController {
 
     var samples = [String]()
 
+    struct User: Decodable {
+        let id: Int
+        let script: String
+        let user_id: String
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            if key.contains("sampleRecording") {
-                samples.append(key)
-                print("\(key) = \(value) \n")
-            }
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
         }
+        getRecordings(userID: uid)
+//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+//            if key.contains("sampleRecording") {
+//                samples.append(key)
+//                print("\(key) = \(value) \n")
+//            }
+//        }
         
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
-        tableView.endUpdates()
-        
+//        tableView.beginUpdates()
+//        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
+//        tableView.endUpdates()
+//
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,6 +61,39 @@ class recordingsTableTableViewController: UITableViewController {
         return samples.count
     }
 
+    
+    func getRecordings(userID: String){
+        print("Getting recordings for: " + userID)
+        guard let url = URL(string: "http://35.199.154.5:5000/api/v1/transcript/" + userID) else { return }
+        
+        //print(url)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                //Decode retrived data with JSONDecoder and assing type of Article object
+                let usersData = try JSONDecoder().decode([User].self, from: data)
+                
+                for user in usersData{
+                    print(user.script)
+                }
+                
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

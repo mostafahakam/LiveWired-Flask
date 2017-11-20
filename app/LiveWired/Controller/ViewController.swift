@@ -13,6 +13,8 @@ import Speech
 
 class ViewController: UIViewController, SFSpeechRecognizerDelegate{
     
+    var url = "http://35.199.154.5:5000/api/v1/transcript/"
+    
     var recording = false
     var recordingNum = 0
     var currentRecording = ""
@@ -105,6 +107,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Recordings", style: .plain, target: self, action: #selector(gotoRecordings))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.black
     }
     
     func handleAuthentication() {
@@ -112,6 +117,11 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
             handleLogout()
         }
+    }
+    
+    @objc func gotoRecordings() {
+        let newController = recordingsTableTableViewController()
+        present(newController, animated: true, completion: nil)
     }
     
     @objc func handleMenu() {
@@ -149,14 +159,23 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             recording = false
             UserDefaults.standard.set(self.currentRecording, forKey:"sampleRecording \(recordingNum)")
             recordingNum += 1
+            print(self.currentRecording)
+            
+            guard let uid = Auth.auth().currentUser?.uid else {
+                return
+            }
+            
+            putScript(userID: uid, script: self.currentRecording)
+            print("userID: " + uid)
+            
             self.currentRecording = ""
+            
         }
     }
 
 
     func recordAndRecognizeSpeech() {
         recording = true
-
 
         audioEngine.prepare()
         do {
@@ -174,11 +193,35 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
                 self.SpeechToTextLabel.text = bestString
-                print(bestString)
                 self.currentRecording = bestString
             } else if let error = error {
                 print(error)
             }
         })
     }
+    
+    func putScript(userID: String, script: String){
+        guard let url = URL(string: "http://35.199.154.5:5000/api/v1/transcript/" + userID) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let putDict = ["script" : script]
+        
+        do {
+            let jsonBody = try JSONSerialization.data(withJSONObject: putDict, options: [])
+            request.httpBody = jsonBody
+        } catch {}
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, _,_) in
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch {}
+        }
+        task.resume()
+    }
+
+
 }
