@@ -43,6 +43,7 @@
         <!--Recordings Table Table View Controller-->
         <scene sceneID="Qbk-Wc-0eX">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l8I-bJ-IlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="recordingsTableTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2YQ-VP-WOS" customClass="recordingsTableTableViewController" customModule="LiveWired" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JiL-r5-GQx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -64,7 +65,6 @@
                         </connections>
                     </tableView>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l8I-bJ-IlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1494" y="-547"/>
         </scene>

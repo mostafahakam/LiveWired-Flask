@@ -12,6 +12,7 @@ import Firebase
 class recordingsTableTableViewController: UITableViewController {
 
     var samples = [String]()
+    var done = false
 
     struct User: Decodable {
         let id: Int
@@ -26,6 +27,11 @@ class recordingsTableTableViewController: UITableViewController {
             return
         }
         getRecordings(userID: uid)
+        
+        while !done {
+            
+        }
+        
 //        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
 //            if key.contains("sampleRecording") {
 //                samples.append(key)
@@ -33,15 +39,17 @@ class recordingsTableTableViewController: UITableViewController {
 //            }
 //        }
         
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
-//        tableView.endUpdates()
-//
+        tableView.beginUpdates()
+        print("samples:" + String(describing: samples))
+        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
+        
+        tableView.endUpdates()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +79,6 @@ class recordingsTableTableViewController: UITableViewController {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -86,7 +93,10 @@ class recordingsTableTableViewController: UITableViewController {
                 
                 for user in usersData{
                     print(user.script)
+                    self.samples.append(user.script)
                 }
+                
+                self.done = true
                 
             } catch let jsonError {
                 print(jsonError)
@@ -94,16 +104,21 @@ class recordingsTableTableViewController: UITableViewController {
         }.resume()
 
     }
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        let destination = TranscriptViewController()
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "Cell")
+        
+        cell.textLabel?.text = samples[indexPath.row]
 
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("row: " + String(indexPath.row)  xx)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
