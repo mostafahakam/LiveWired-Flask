@@ -22,22 +22,13 @@ class recordingsTableTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
         getRecordings(userID: uid)
         
         while !done {
-            
         }
-        
-//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-//            if key.contains("sampleRecording") {
-//                samples.append(key)
-//                print("\(key) = \(value) \n")
-//            }
-//        }
         
         tableView.beginUpdates()
         print("samples:" + String(describing: samples))
@@ -93,7 +84,9 @@ class recordingsTableTableViewController: UITableViewController {
                 
                 for user in usersData{
                     print(user.script)
-                    self.samples.append(user.script)
+                    if(!user.script.isEmpty){
+                        self.samples.append(user.script)
+                    }
                 }
                 
                 self.done = true
@@ -116,8 +109,19 @@ class recordingsTableTableViewController: UITableViewController {
         return cell
     }
     
+    @objc func handleBack() {
+        
+        let newController = ViewController()
+        present(newController, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print("row: " + String(indexPath.row)  xx)
+    }
+    
+    func actionRefresh(sender: UIBarButtonItem)
+    {
+        print("The action button is refreshed")
     }
     /*
     // Override to support conditional editing of the table view.

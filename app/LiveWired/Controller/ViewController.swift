@@ -71,13 +71,18 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         
         
         self.view.addSubview(audioButton1)
-        setupAudioButton(diameter: 60, color: UIColor(r: 255, g: 136, b: 77), button: audioButton1)
+        setupAudioButton(diameter: 60, button: audioButton1)
         self.view.addSubview(audioButton2)
-        setupAudioButton(diameter: 55, color: UIColor(r: 220, g: 220, b: 220), button: audioButton2)
+        setupMiddleAudioButton(diameter: 55, color: UIColor(r: 220, g: 220, b: 220), button: audioButton2)
         self.view.addSubview(audioButton3)
-        setupAudioButton(diameter: 50, color: UIColor(r: 255, g: 136, b: 77), button: audioButton3)
+        setupAudioButton(diameter: 50, button: audioButton3)
+        
+        audioButton1.backgroundColor = UIColor(r: 255, g: 136, b: 77)
+        audioButton3.backgroundColor = UIColor(r: 255, g: 136, b: 77)
         
         self.view.addSubview(SpeechToTextLabel)
+        
+        
         
         seteupSpeechToTextLabel()
         setupNavigation()
@@ -92,7 +97,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         SpeechToTextLabel.widthAnchor.constraint(equalToConstant: self.view.frame.size.width-20).isActive = true
     }
     
-    func setupAudioButton(diameter: CGFloat, color: UIColor, button: UIButton) {
+    func setupAudioButton(diameter: CGFloat, button: UIButton) {
+        button.frame = CGRect(x: ((self.view.frame.size.width/2)-(diameter/2)) , y: (self.view.frame.size.height-70-(diameter/2)), width: diameter, height: diameter)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
+    
+    func setupMiddleAudioButton(diameter: CGFloat, color: UIColor, button: UIButton) {
         button.backgroundColor = color
         button.frame = CGRect(x: ((self.view.frame.size.width/2)-(diameter/2)) , y: (self.view.frame.size.height-70-(diameter/2)), width: diameter, height: diameter)
         button.layer.cornerRadius = 0.5 * button.bounds.size.width
@@ -121,7 +132,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
     
     @objc func gotoRecordings() {
         let newController = recordingsTableTableViewController()
-        present(newController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(newController, animated: true)
     }
     
     @objc func handleMenu() {
@@ -148,12 +159,16 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @objc func startButtonTapped(_ sender: UIButton) {
         if !recording {
+            audioButton1.backgroundColor = UIColor(r: 255, g: 26, b: 26)
+            audioButton3.backgroundColor = UIColor(r: 255, g: 26, b: 26)
             print("Starting recording")
             self.recordAndRecognizeSpeech()
         } else {
+            audioButton1.backgroundColor = UIColor(r: 255, g: 136, b: 77)
+            audioButton3.backgroundColor = UIColor(r: 255, g: 136, b: 77)
             print("Stopping recording")
             audioEngine.stop()
             recording = false
@@ -172,23 +187,23 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             
         }
     }
-
-
+    
+    
     func recordAndRecognizeSpeech() {
         recording = true
-
+        
         audioEngine.prepare()
         do {
             try audioEngine.start()
         } catch {
             return print(error)
         }
-
+        
         guard let myRecognizer = SFSpeechRecognizer() else { return }
         if !myRecognizer.isAvailable {
             return
         }
-
+        
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
@@ -222,6 +237,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         }
         task.resume()
     }
-
-
+    
+    
 }
