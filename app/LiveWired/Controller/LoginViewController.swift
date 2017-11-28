@@ -75,8 +75,21 @@ class LoginViewController: UIViewController {
             return
         }
         
+        if name == "" {
+            print("aaa")
+            self.nameTextField.text = ""
+            self.emailTextField.text = ""
+            self.PassTextField.text = ""
+            self.registerNameMessage.alpha = 1
+            return
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
             if error != nil {
+                self.nameTextField.text = ""
+                self.emailTextField.text = ""
+                self.PassTextField.text = ""
+                self.registerEmailMessage.alpha = 1
                 print(error ?? "User email or password is nil")
                 return
             }
@@ -146,6 +159,26 @@ class LoginViewController: UIViewController {
         return cm
     }()
     
+    let registerEmailMessage: UILabel = {
+        let rm = UILabel()
+        rm.textAlignment = NSTextAlignment.center
+        rm.text = "invalid email/password field"
+        rm.textColor = UIColor.white
+        rm.font = UIFont.systemFont(ofSize: 15)
+        rm.translatesAutoresizingMaskIntoConstraints = false
+        return rm
+    }()
+    
+    let registerNameMessage: UILabel = {
+        let rm = UILabel()
+        rm.textAlignment = NSTextAlignment.center
+        rm.text = "invalid name"
+        rm.textColor = UIColor.white
+        rm.font = UIFont.systemFont(ofSize: 15)
+        rm.translatesAutoresizingMaskIntoConstraints = false
+        return rm
+    }()
+    
     
     let PassTextField: UITextField = {
         
@@ -185,6 +218,8 @@ class LoginViewController: UIViewController {
         self.PassTextField.text = ""
         self.nameTextField.text = ""
         credentialMessage.alpha = 0
+        registerEmailMessage.alpha = 0
+        registerNameMessage.alpha = 0
         
         let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex)
         logRegButton.setTitle(title, for: .normal)
@@ -222,6 +257,8 @@ class LoginViewController: UIViewController {
         view.addSubview(imageView)
         view.addSubview(loginRegisterSegmentedControl)
         view.addSubview(credentialMessage)
+        view.addSubview(registerEmailMessage)
+        view.addSubview(registerNameMessage)
 //        view.addSubview(profileImageView)
         
         setupImage()
@@ -230,6 +267,9 @@ class LoginViewController: UIViewController {
         setupLogRegButton()
         setupLoginRegisterSegmentedControll()
         setupCredentialMessage()
+        setupRegisterEmailMessage()
+        setupRegisterNameMessage()
+        
         
 //        setupPorifleImageView()
     }
@@ -238,6 +278,18 @@ class LoginViewController: UIViewController {
         credentialMessage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         credentialMessage.topAnchor.constraint(equalTo: inputContainerView.bottomAnchor, constant: 60).isActive = true
         credentialMessage.alpha = 0
+    }
+    
+    func setupRegisterEmailMessage() {
+        registerEmailMessage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        registerEmailMessage.topAnchor.constraint(equalTo: inputContainerView.bottomAnchor, constant: 60).isActive = true
+        registerEmailMessage.alpha = 0
+    }
+    
+    func setupRegisterNameMessage() {
+        registerNameMessage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        registerNameMessage.topAnchor.constraint(equalTo: inputContainerView.bottomAnchor, constant: 60).isActive = true
+        registerNameMessage.alpha = 0
     }
     
     func setupLoginRegisterSegmentedControll() {
