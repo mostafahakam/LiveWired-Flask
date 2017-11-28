@@ -170,6 +170,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             audioButton1.backgroundColor = UIColor(r: 255, g: 136, b: 77)
             audioButton3.backgroundColor = UIColor(r: 255, g: 136, b: 77)
             print("Stopping recording")
+            recognitionTask?.cancel()
             audioEngine.stop()
             recording = false
             UserDefaults.standard.set(self.currentRecording, forKey:"sampleRecording \(recordingNum)")
@@ -183,6 +184,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
             putScript(userID: uid, script: self.currentRecording)
             print("userID: " + uid)
             
+            self.SpeechToTextLabel.text = ""
             self.currentRecording = ""
             
         }
