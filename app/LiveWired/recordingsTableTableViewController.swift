@@ -30,6 +30,9 @@ class recordingsTableTableViewController: UITableViewController {
         while !done {
         }
         
+        navigationItem.title = "My Recordings"
+        tableView.separatorColor = UIColor(r: 200, g: 200, b: 200)
+        
         tableView.beginUpdates()
         print("samples:" + String(describing: samples))
         tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
