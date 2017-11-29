@@ -119,7 +119,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate{
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Recordings", style: .plain, target: self, action: #selector(gotoRecordings))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "recordings", style: .plain, target: self, action: #selector(gotoRecordings))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.black
     }
     
