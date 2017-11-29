@@ -13,11 +13,20 @@ class recordingsTableTableViewController: UITableViewController {
 
     var samples = [String]()
     var done = false
+    
+    let cellReuseIdentifier = "cell"
 
     struct User: Decodable {
         let id: Int
         let script: String
         let user_id: String
+    }
+    
+    @objc func loadTable() {
+        tableView.beginUpdates()
+        print("samples:" + String(describing: samples))
+        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
     }
     
     override func viewDidLoad() {
@@ -27,23 +36,25 @@ class recordingsTableTableViewController: UITableViewController {
         }
         getRecordings(userID: uid)
         
+        
         while !done {
         }
-        
         navigationItem.title = "My Recordings"
         tableView.separatorColor = UIColor(r: 200, g: 200, b: 200)
+        self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        tableView.beginUpdates()
-        print("samples:" + String(describing: samples))
-        tableView.insertRows(at: [IndexPath(row: samples.count-1, section: 0)], with: .automatic)
-        
-        tableView.endUpdates()
+        loadTable()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.allowsMultipleSelectionDuringEditing = false
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +63,7 @@ class recordingsTableTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -62,6 +74,27 @@ class recordingsTableTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return samples.count
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let uid = Auth.auth().currentUser?.uid else {
+                return
+            }
+            
+            deleteScript(userID: uid, script: samples[indexPath.row])
+            
+            samples.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+
 
     
     func getRecordings(userID: String){
@@ -103,7 +136,7 @@ class recordingsTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let destination = TranscriptViewController()
+        //let destination = TranscriptViewController()
         
         let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "Cell")
         
@@ -113,12 +146,17 @@ class recordingsTableTableViewController: UITableViewController {
     }
     
     @objc func handleBack() {
-        
         let newController = ViewController()
         present(newController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alertController = UIAlertController(title: samples[indexPath.row], message: "", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel)
+        self.present(alertController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        alertController.addAction(cancelAction)
+        print(samples[indexPath.row])
         //print("row: " + String(indexPath.row)  xx)
     }
     
@@ -126,49 +164,28 @@ class recordingsTableTableViewController: UITableViewController {
     {
         print("The action button is refreshed")
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func deleteScript(userID: String, script: String){
+        guard let url = URL(string: "http://35.199.154.5:5000/api/v1/delete/transcript/" + userID) else { return }
+        var request = URLRequest(url: url)
+        print(userID)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let putDict = ["script" : script]
+        
+        do {
+            let jsonBody = try JSONSerialization.data(withJSONObject: putDict, options: [])
+            request.httpBody = jsonBody
+        } catch {}
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, _,_) in
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch {}
+        }
+        task.resume()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
